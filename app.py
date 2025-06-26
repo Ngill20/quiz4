@@ -202,6 +202,38 @@ def question11():
         char_results=char_results
     )
 
+@app.route("/bi_grams", methods=["GET", "POST"])
+def bi_grams():
+    cleaned_text = ""
+    matching_bigrams = []
+
+    if request.method == "POST":
+        main_text = request.form.get("main_text", "").strip().lower()
+        stop_words_input = request.form.get("stop_words", "").lower()
+        search_chars = request.form.get("bigram_search", "").lower()
+
+        # Normalize input
+        stop_words = {w.strip() for w in stop_words_input.split(",") if w.strip()}
+        translator = str.maketrans('', '', string.punctuation)
+        main_text = main_text.translate(translator)
+
+        # Clean and remove stop words
+        words = [w for w in main_text.split() if w not in stop_words]
+        cleaned_text = " ".join(words)
+
+        # Extract bi-grams: (words[i], words[i+1])
+        for i in range(len(words) - 1):
+            w1, w2 = words[i], words[i + 1]
+            if (w1 and w1[0] in search_chars) or (w2 and w2[0] in search_chars):
+                matching_bigrams.append(f"{w1} {w2}")
+
+    return render_template(
+        "bi_grams.html",
+        cleaned_text=cleaned_text,
+        matching_bigrams=matching_bigrams
+    )
+
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search_text():
