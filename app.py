@@ -280,6 +280,6 @@ def semantic_search():
     return render_template("semantic_search.html", results=results)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
 
