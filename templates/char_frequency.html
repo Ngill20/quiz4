@@ -1,0 +1,35 @@
+<form method="POST">
+    <label for="T">Enter a string:</label><br>
+    <textarea name="T" rows="4" cols="50" required>{{ input_text }}</textarea><br><br>
+
+    <label for="old_char">Character to replace:</label>
+    <input type="text" name="old_char" maxlength="1" value="{{ old_char }}"><br><br>
+
+    <label for="new_char">Replacement character:</label>
+    <input type="text" name="new_char" maxlength="1" value="{{ new_char }}"><br><br>
+
+    <button type="submit">Analyze</button>
+</form>
+
+{% if updated_text %}
+    <h2>Updated & Cleaned String:</h2>
+    <p style="white-space: pre-wrap;">{{ updated_text }}</p>
+{% endif %}
+
+{% if frequency %}
+    <h2>Character Frequency</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Character</th>
+            <th>Count</th>
+            <th>Frequency (%)</th>
+        </tr>
+        {% for char, data in frequency.items() %}
+            <tr>
+                <td>{{ char | e }}</td>
+                <td>{{ data.count }}</td>
+                <td>{{ '%.2f' % data.percent }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}

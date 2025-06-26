@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Question 11</title>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+    <h1>Question 11 - Word Count & Character Lookup</h1>
+
+    <form method="POST">
+        <label for="S">Enter a string (S):</label><br>
+        <textarea name="S" rows="4" cols="60" required>{{ input_string }}</textarea><br><br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if input_string %}
+        <h2>Results</h2>
+        <p><strong>Word Count:</strong> {{ word_count }}</p>
+
+        <h3>Character Matches:</h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Character</th>
+                <th>Words starting with this character</th>
+            </tr>
+            {% for char, words in char_results.items() %}
+                <tr>
+                    <td>{{ char }}</td>
+                    <td>{{ ', '.join(words) }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
