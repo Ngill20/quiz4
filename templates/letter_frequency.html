@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Letter Frequency</title>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+    <h1>Letter Frequency in a Text File</h1>
+    
+    <form method="POST">
+        <label for="filename">Select a file:</label>
+        <select name="filename" required>
+            {% for file in files %}
+                <option value="{{ file }}">{{ file }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if frequency %}
+        <h2>Letter Frequency (A–Z)</h2>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Letter</th>
+                <th>Count</th>
+                <th>Frequency (%)</th>
+            </tr>
+            {% for letter, stats in frequency.items() %}
+                <tr>
+                    <td>{{ letter }}</td>
+                    <td>{{ stats.count }}</td>
+                    <td>{{ '%.2f' % stats.percent }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>

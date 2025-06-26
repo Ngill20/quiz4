@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Processed {{ filename }}</title>
+</head>
+<body style="font-family:sans-serif; padding:2rem;">
+    <h2>Processed File: {{ filename }}</h2>
+
+    <p><strong>{{ removed_count }}</strong> words were removed using StopWords.txt.</p>
+    <p>Cleaned file was uploaded to Azure Blob Storage as <strong>{{ new_filename }}</strong>.</p>
+
+    <h3>Cleaned Text:</h3>
+    <pre style="background:#f0f0f0; padding:1rem; border:1px solid #ccc; white-space: pre-wrap; word-wrap: break-word;">
+    {{ cleaned_text }}
+    </pre>
+
+    <p><a href="{{ url_for('process_text') }}">&larr; Process Another File</a></p>
+    <p><a href="{{ url_for('index') }}">🏠 Back to Home</a></p>
+</body>
+</html>

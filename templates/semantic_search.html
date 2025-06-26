@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Semantic Search</title></head>
+<body style="font-family: sans-serif; padding: 2rem;">
+    <h1>Semantic Search (Bi-gram TF-IDF)</h1>
+    <form method="POST">
+        <label>Enter search query:</label>
+        <input type="text" name="query" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h2>Top Matching Files</h2>
+        <ul>
+        {% for file, score in results %}
+            <li><strong>{{ file }}</strong> — Score: {{ '%.4f' % score }}</li>
+        {% endfor %}
+        </ul>
+    {% elif results is not none %}
+        <p>No relevant documents found.</p>
+    {% endif %}
+</body>
+</html>

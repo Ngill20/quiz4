@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gill Text App</title>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+    <h1>Navjot Gill -9762 - Text App</h1>
+    
+    <a href="{{ url_for('upload_txt') }}">
+        <button style="padding: 0.5rem 1rem;">Upload a .txt File</button>
+    </a> <br> <br>
+    <a href="{{ url_for('process_text') }}">
+        <button style="padding: 0.5rem 1rem;">Process Text</button>
+    </a> <br> <br>
+
+    <a href="{{ url_for('search_text') }}">
+    <button style="padding: 0.5rem 1rem;">Search Text in Files</button>
+    </a> <br> <br>
+
+    <a href="{{ url_for('letter_frequency') }}">
+    <button style="padding: 0.5rem 1rem;">Letter Frequency</button>
+    </a> <br> <br>
+
+    <a href="{{ url_for('semantic_search') }}">
+    <button style="padding: 0.5rem 1rem;">Semantic Search</button>
+    </a>
+
+</body>
+</html>

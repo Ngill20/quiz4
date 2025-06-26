@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Process Text</title>
+</head>
+<body style="font-family:sans-serif; padding:2rem;">
+    <h2>Process a Text File</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file">Upload a .txt file:</label>
+        <input type="file" name="file" accept=".txt" required>
+        <button type="submit">Process</button>
+    </form>
+
+    {% with msg = get_flashed_messages() %}
+      {% if msg %}
+        <p style="color:red;"><strong>{{ msg[0] }}</strong></p>
+      {% endif %}
+    {% endwith %}
+
+    <p><a href="{{ url_for('index') }}">&larr; Back to Home</a></p>
+</body>
+</html>

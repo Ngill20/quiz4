@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload .txt File</title>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+    <h2>Upload a .txt file</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% with msg = get_flashed_messages() %}
+      {% if msg %}
+        <p><strong>{{ msg[0] }}</strong></p>
+      {% endif %}
+    {% endwith %}
+
+    {% if filename %}
+        <h3>Uploaded File: {{ filename }}</h3>
+        <pre style="background:#f9f9f9;border:1px solid #ccc;padding:1em;">{{ content }}</pre>
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">&larr; Back to Home</a></p>
+</body>
+</html>
